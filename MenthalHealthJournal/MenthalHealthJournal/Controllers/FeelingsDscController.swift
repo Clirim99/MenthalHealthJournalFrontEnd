@@ -77,6 +77,7 @@ struct FeelingsDscController: View {
             )
         )
         .ignoresSafeArea() // Optional: extend under the safe area
+        
         if showHistory {
             Color.black.opacity(0.3)
                 .ignoresSafeArea()
