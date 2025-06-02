@@ -10,16 +10,37 @@ import SwiftUI
 struct FeelingsDscController: View {
     @State private var text: String = "Describe your day"
     @State private var progress: Double = 0.0
+    @State private var showHistory: Bool = false
 
     
     var body: some View {
         VStack{
+            HStack{
+                Button("menu") {
+                    print("menu tapped!")
+                    withAnimation {
+                        showHistory.toggle()
+                                        
+                    }
+                }
+                .frame(maxWidth: 80)
+                .background(Color.gray.opacity(0.3))
+                .buttonStyle(.bordered)
+                .cornerRadius(10)
+                .foregroundColor(.white)
+                .padding(.top,36)
+                .padding(.leading,18)
+                Spacer()
+            }
+            
+          
+            
+            
             Image("menthalHealthLogo")
                 .resizable()
                 .cornerRadius(60)
                 .frame(width: 120,height: 120)
                 .padding(.top,180)
-            
             
             Spacer()
             
@@ -56,8 +77,26 @@ struct FeelingsDscController: View {
             )
         )
         .ignoresSafeArea() // Optional: extend under the safe area
+        if showHistory {
+            Color.black.opacity(0.3)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    withAnimation {
+                        showHistory = false
+                    }
+                }
+        }
+        HStack {
+                        UIKitHistoryView()
+                           .frame(width: 300)
+                           .cornerRadius(12)
+                           .shadow(radius: 5)
+                           .transition(.move(edge: .leading))
+                       
+                       Spacer()
+                   }
+        .animation(.easeInOut, value: showHistory)
     }
-    
 }
 
 #Preview {
