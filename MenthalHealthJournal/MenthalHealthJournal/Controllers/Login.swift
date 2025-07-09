@@ -23,23 +23,22 @@ struct Login: View {
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .padding(5)
             HStack{
-                Button("Log in") {
-                    print("Button tapped!")
+                NavigationLink(destination: FeelingsDscController()) {
+                    Text("Login")
+                        .frame(maxWidth: .infinity, maxHeight: 40)
+                        .background(Color.gray.opacity(0.3))
+                        .buttonStyle(.bordered)
+                        .cornerRadius(10)
+                        .foregroundColor(.white)
                 }
-                .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.3))
-                .buttonStyle(.bordered)
-                .cornerRadius(10)
-                .foregroundColor(.white)
-                
-                Button("Sign up") {
-                    print("Button tapped!")
+                NavigationLink(destination: SignUp()) {
+                    Text("Sign up")
+                        .frame(maxWidth: .infinity, maxHeight: 40)
+                        .background(Color.gray.opacity(0.3))
+                        .buttonStyle(.bordered)
+                        .cornerRadius(10)
+                        .foregroundColor(.white)
                 }
-                .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.3))
-                .buttonStyle(.bordered)
-                .cornerRadius(10)
-                .foregroundColor(.white)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity) // Expand to fill the screen

@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func startTheApp(_ sender: Any) {
-//        let swiftUI = HomePage()
+//        let swiftUI = HomePage()s
 //        let toAddContentController = UIHostingController(rootView: swiftUI)
 //        self.navigationController?.pushViewController(toAddContentController, animated: true)
         let storyboard = UIStoryboard(name: "ContactsList", bundle: nil) // Replace "Main" with your actual storyboard name

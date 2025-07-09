@@ -19,20 +19,25 @@ struct HomePage: View {
                     .frame(width: 120,height: 120)
                     .padding(.top,180)
                 Spacer()
-                Button("Get started") {
-                    print("Button tapped!")
+                NavigationLink(destination: SignUp()) {
+                    Text("Get started")
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.gray.opacity(0.3))
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
                 }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.3))
-                .foregroundColor(.white)
-                .cornerRadius(10)
-                .padding(.horizontal)
-                Button("Already user? Log in"){
+                HStack{
+                    Text("Already user?")
+                        .foregroundColor(.white)
+                    NavigationLink(destination: Login()) {
+                        Text("Log in")
+                        .buttonStyle(.bordered)
+                        .cornerRadius(10)
+                        .foregroundColor(.blue)
+                    }
                 }
-                .buttonStyle(.bordered)
-                .cornerRadius(10)
-                .foregroundColor(.white)
             }.padding(.bottom,80)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity) // Expand to fill the screen
