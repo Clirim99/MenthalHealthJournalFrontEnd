@@ -98,6 +98,7 @@ struct FeelingsDscController: View {
                    }
         .animation(.easeInOut, value: showHistory)
     }
+    
 }
 
 #Preview {
