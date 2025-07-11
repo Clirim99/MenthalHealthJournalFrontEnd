@@ -11,15 +11,22 @@ import SwiftUI
 class HistoryController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
+   // let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // collectionView.delegate = self
-       // collectionView.dataSource = self
-        
-        
-        // Do any additional setup after loading the view.
+        collectionView.delegate = self
+        collectionView.dataSource = self
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(collectionView)
+//
+//        NSLayoutConstraint.activate([
+//            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+//            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+//        ])
     }
     
 
@@ -59,7 +66,8 @@ extension HistoryController: UICollectionViewDelegate, UICollectionViewDataSourc
 
 struct UIKitHistoryView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> HistoryController {
-        return HistoryController()
+        let storyboard = UIStoryboard(name: "History", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "historyID") as! HistoryController
     }
 
     func updateUIViewController(_ uiViewController: HistoryController, context: Context) {}

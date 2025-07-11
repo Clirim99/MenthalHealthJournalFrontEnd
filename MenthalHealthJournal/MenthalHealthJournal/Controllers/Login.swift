@@ -51,18 +51,20 @@ struct Login: View {
                         }
                     
                     SecureField("Password", text: $password)
-                        .padding(12)
+                        .padding(12) // inner padding like Rounded style
                         .background(Color.white.opacity(0.15)) // field background
-                        .cornerRadius(8)
+                        .cornerRadius(8) // rounded edges
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.white.opacity(0.3), lineWidth: 1)
                         )
-                        .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
+                        .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1) // optional light shadow
+                        .autocapitalization(.none)
+                        .keyboardType(.emailAddress)
                         .focused($focusedField, equals: .password)
                         .submitLabel(.next)
                         .onSubmit {
-                            focusedField = nil
+                            focusedField = .none
                         }
                     
                     

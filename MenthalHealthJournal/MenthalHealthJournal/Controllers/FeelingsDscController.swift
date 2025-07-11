@@ -105,7 +105,7 @@ struct FeelingsDscController: View {
     func handleProgressChange(_ value: Double) {
         switch value {
         case 0.0..<0.2:
-            emojisImageName = "vresysad"
+            emojisImageName = "verysad"
         case 0.2..<0.4:
             emojisImageName = "sad"
         case 0.4..<0.6:
