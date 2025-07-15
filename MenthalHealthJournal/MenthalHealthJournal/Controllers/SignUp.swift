@@ -134,7 +134,7 @@ struct SignUp: View {
 
 
                 Button("Sign up") {
-                    print("signed up")
+                    print("signed up tapped")
                     if firstName.isEmpty || lastName.isEmpty || username.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
                         toastMessage = "All fields are required!"
                         showToast = true

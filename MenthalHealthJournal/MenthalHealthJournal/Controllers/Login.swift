@@ -120,10 +120,12 @@ struct Login: View {
                 .showToast(text: toastMessage, isShowing: $showToast)
                 
                 .navigationDestination(isPresented: $isLoggedIn) {
-                    FeelingsDscController()
+                    MainControllerView()
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
+
     }
         func doLogin() {
             loginUser(email: email, password: password) { result in
@@ -134,7 +136,12 @@ struct Login: View {
                         self.isLoggedIn = true
                         
                     case .failure(let error):
-                        self.errorMessage = error.localizedDescription
+                        if error.localizedDescription == "invalid  or password" {
+                            self.errorMessage = "invalid  or password"
+                        }
+                        else {
+                            self.errorMessage = error.localizedDescription
+                        }
                         self.showError = true
                     }
                 }

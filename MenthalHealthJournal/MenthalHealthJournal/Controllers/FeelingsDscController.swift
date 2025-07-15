@@ -14,45 +14,34 @@ struct FeelingsDscController: View {
     @State private var emojisImageName = "expresionLess"
     @FocusState private var isFocused: Bool
     @State private var hasStartedTyping = false
+    
+    @State private var showMenu = false
+
 
     var body: some View {
             // Full screen tappable background to dismiss keyboard
            
-
+        ZStack{
             // Main content
+            
+            
             VStack {
-                HStack {
-                    Button("menu") {
-                        print("menu tapped!")
-                        withAnimation {
-                            showHistory.toggle()
-                        }
-                    }
-                    .frame(maxWidth: 80)
-                    .background(Color.gray.opacity(0.3))
-                    .buttonStyle(.bordered)
-                    .cornerRadius(10)
-                    .foregroundColor(.white)
-                    .padding(.top, 36)
-                    .padding(.leading, 18)
-                    
-                    Spacer()
-                }
 
+                
                 Image(emojisImageName)
                     .resizable()
                     .cornerRadius(60)
                     .frame(width: 120, height: 120)
                     .padding(.top, 60)
-
+                
                 Spacer()
-
+                
                 Slider(value: $progress, in: 0...1)
                     .padding()
                     .onChange(of: progress) { newValue in
                         handleProgressChange(newValue)
                     }
-
+                
                 TextEditor(text: $feelingsText)
                     .padding(12)
                     .background(Color.white.opacity(0.15))
@@ -76,9 +65,11 @@ struct FeelingsDscController: View {
                         }
                     }
                     .animation(.easeInOut(duration: 0.2), value: isFocused)
-
+                
                 Button("Send") {
                     // Action here
+                    
+                    print ("Send button tapped")
                 }
                 .padding()
                 .frame(maxWidth: UIScreen.main.bounds.width - 40, maxHeight: 50)
@@ -86,8 +77,8 @@ struct FeelingsDscController: View {
                 .cornerRadius(10)
                 .foregroundColor(.white)
                 .padding(.bottom, 16)
-
-
+                
+                
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -99,8 +90,11 @@ struct FeelingsDscController: View {
                 )
             )
             .ignoresSafeArea()
-        
+
+        }
     }
+    
+    
 
     func handleProgressChange(_ value: Double) {
         switch value {

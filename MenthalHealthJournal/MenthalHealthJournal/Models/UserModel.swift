@@ -14,6 +14,14 @@ struct User: Codable {
     let username: String
     let email: String
    // let created_at: String?
+    init(){
+        self.id = ""
+        self.first_name = ""
+        self.last_name = ""
+        self.username = ""
+        self.email = ""
+    }
+    
 }
 
 
