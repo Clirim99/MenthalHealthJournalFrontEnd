@@ -1,10 +1,3 @@
-//
-//  SignUp.swift
-//  MenthalHealthJournal
-//
-//  Created by TokioMac on 28.5.25.
-//
-
 import SwiftUI
 
 enum SignUpField: Hashable {
@@ -19,211 +12,172 @@ struct SignUp: View {
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
     @State private var gotToLogin: Bool = false
+    @State private var isLoading = false
 
-    
     @State private var showToast = false
     @State private var toastMessage = ""
-    
+
     @FocusState private var focusedField: SignUpField?
-    
+
     var body: some View {
         NavigationStack {
-            
-            VStack{
-                
-                Text("Sign Up")
-                    .fontWeight(.heavy)
-                // First name
-                TextField("First name", text: $firstName)
-                    .padding(12)
-                    .background(Color.white.opacity(0.15))
-                    .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.white.opacity(0.3), lineWidth: 1)
-                    )
-                    .foregroundColor(.white)
-                    .focused($focusedField, equals: .firstName)
-                    .submitLabel(.next)
-                    .onSubmit {
-                        focusedField = .lastName
-                    }
+            ZStack {
+                AppTheme.backgroundGradient.ignoresSafeArea()
 
-                // Last name
-                TextField("Last name", text: $lastName)
-                    .padding(12)
-                    .background(Color.white.opacity(0.15))
-                    .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.white.opacity(0.3), lineWidth: 1)
-                    )
-                    .foregroundColor(.white)
-                    .focused($focusedField, equals: .lastName)
-                    .submitLabel(.next)
-                    .onSubmit {
-                        focusedField = .username
-                    }
+                ScrollView {
+                    VStack(spacing: 20) {
+                        Spacer().frame(height: 20)
 
-                // Username
-                TextField("Username", text: $username)
-                    .padding(12)
-                    .background(Color.white.opacity(0.15))
-                    .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.white.opacity(0.3), lineWidth: 1)
-                    )
-                    .foregroundColor(.white)
-                    .focused($focusedField, equals: .username)
-                    .submitLabel(.next)
-                    .onSubmit {
-                        focusedField = .email
-                    }
+                        Text("Create Account")
+                            .font(.title.weight(.bold))
+                            .foregroundColor(AppTheme.textPrimary)
 
-                // Email
-                TextField("Email", text: $email)
-                    .padding(12)
-                    .background(Color.white.opacity(0.15))
-                    .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.white.opacity(0.3), lineWidth: 1)
-                    )
-                    .foregroundColor(.white)
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
-                    .focused($focusedField, equals: .email)
-                    .submitLabel(.next)
-                    .onSubmit {
-                        focusedField = .password
-                    }
+                        Text("Start your journaling journey")
+                            .font(.subheadline)
+                            .foregroundColor(AppTheme.textSecondary)
 
-                // Password
-                SecureField("Password", text: $password)
-                    .padding(12)
-                    .background(Color.white.opacity(0.15))
-                    .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.white.opacity(0.3), lineWidth: 1)
-                    )
-                    .foregroundColor(.white)
-                    .focused($focusedField, equals: .password)
-                    .submitLabel(.next)
-                    .onSubmit {
-                        focusedField = .confirmPassword
-                    }
+                        VStack(spacing: 12) {
+                            HStack(spacing: 12) {
+                                styledField("First name", text: $firstName, field: .firstName, next: .lastName)
+                                styledField("Last name", text: $lastName, field: .lastName, next: .username)
+                            }
 
-                // Confirm Password
-                SecureField("Confirm password", text: $confirmPassword)
-                    .padding(12)
-                    .background(Color.white.opacity(0.15))
-                    .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.white.opacity(0.3), lineWidth: 1)
-                    )
-                    .foregroundColor(.white)
-                    .focused($focusedField, equals: .confirmPassword)
-                    .submitLabel(.done)
-                    .onSubmit {
-                        focusedField = nil
-                    }
-                    .padding(.bottom, 30)  // <-- Add this padding
+                            styledField("Username", text: $username, field: .username, next: .email)
 
+                            styledField("Email", text: $email, field: .email, next: .password)
+                                .keyboardType(.emailAddress)
+                                .autocapitalization(.none)
 
-                Button("Sign up") {
-                    print("signed up tapped")
-                    if firstName.isEmpty || lastName.isEmpty || username.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
-                        toastMessage = "All fields are required!"
-                        showToast = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                            showToast = false
+                            SecureField("Password", text: $password)
+                                .padding(14)
+                                .background(AppTheme.inputBg)
+                                .cornerRadius(12)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(AppTheme.border, lineWidth: 1)
+                                )
+                                .foregroundColor(AppTheme.textPrimary)
+                                .focused($focusedField, equals: .password)
+                                .submitLabel(.next)
+                                .onSubmit { focusedField = .confirmPassword }
+
+                            SecureField("Confirm password", text: $confirmPassword)
+                                .padding(14)
+                                .background(AppTheme.inputBg)
+                                .cornerRadius(12)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(AppTheme.border, lineWidth: 1)
+                                )
+                                .foregroundColor(AppTheme.textPrimary)
+                                .focused($focusedField, equals: .confirmPassword)
+                                .submitLabel(.done)
+                                .onSubmit { focusedField = nil }
                         }
-                    }   else if confirmPassword != password {
-                        toastMessage = "Password and confirm password must match!"
-                        showToast = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                            showToast = false
+
+                        Button {
+                            validateAndRegister()
+                        } label: {
+                            HStack {
+                                if isLoading {
+                                    ProgressView().tint(.white)
+                                } else {
+                                    Text("Sign Up")
+                                        .fontWeight(.semibold)
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(AppTheme.accent)
+                            .foregroundColor(.white)
+                            .cornerRadius(14)
                         }
-                    }   else if !email.contains("@") || !email.contains(".") {
-                        toastMessage = "Please enter a valid email address!"
-                        showToast = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                            showToast = false
+                        .disabled(isLoading)
+                        .padding(.top, 8)
+
+                        NavigationLink(destination: Login()) {
+                            Text("Already have an account? **Log in**")
+                                .font(.subheadline)
+                                .foregroundColor(AppTheme.textSecondary)
                         }
-                    }   else if password.count < 8 {
-                        toastMessage = "Password must be at least 8 characters long"
-                        showToast = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                            showToast = false
-                        }
-                    }   else if !isValidPassword(password) {
-                        toastMessage = "Password must contain at least one number and one special character (*, %, ^)"
-                        showToast = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                            showToast = false
-                        }
-                    }   else {
-                        registerNewUser()
+
+                        Spacer().frame(height: 30)
                     }
+                    .padding(.horizontal, 24)
                 }
-                
-                .frame(maxWidth: UIScreen.main.bounds.width / 3)
-                .background(Color.gray.opacity(0.3))
-                .buttonStyle(.bordered)
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.white.opacity(0.3), lineWidth: 1)
-                )
-                .foregroundColor(.white)
-                
-                
-                
-                
-                
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity) // Expand to fill the screen
-            .background(
-                LinearGradient(
-                    colors: [.blue, .purple],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            )
-            .ignoresSafeArea() // Optional: extend under the safe area
             .showToast(text: toastMessage, isShowing: $showToast)
             .navigationDestination(isPresented: $gotToLogin) {
                 Login()
             }
         }
     }
-    
-    func registerNewUser(){
+
+    private func styledField(_ placeholder: String, text: Binding<String>, field: SignUpField, next: SignUpField) -> some View {
+        TextField(placeholder, text: text)
+            .padding(14)
+            .background(AppTheme.inputBg)
+            .cornerRadius(12)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(AppTheme.border, lineWidth: 1)
+            )
+            .foregroundColor(AppTheme.textPrimary)
+            .focused($focusedField, equals: field)
+            .submitLabel(.next)
+            .onSubmit { focusedField = next }
+    }
+
+    private func validateAndRegister() {
+        if firstName.isEmpty || lastName.isEmpty || username.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
+            showToastMessage("All fields are required!")
+        } else if confirmPassword != password {
+            showToastMessage("Passwords don't match!")
+        } else if !email.contains("@") || !email.contains(".") {
+            showToastMessage("Please enter a valid email!")
+        } else if password.count < 8 {
+            showToastMessage("Password must be at least 8 characters")
+        } else if !isValidPassword(password) {
+            showToastMessage("Password needs a number and special character (*, %, ^)")
+        } else {
+            registerNewUser()
+        }
+    }
+
+    private func showToastMessage(_ text: String) {
+        toastMessage = text
+        showToast = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            showToast = false
+        }
+    }
+
+    func registerNewUser() {
+        isLoading = true
         registerUser(
-            firstName: self.firstName,
-            lastName: self.lastName,
-            username: self.username,
-            email: self.email,
-            password: self.password
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            email: email,
+            password: password
         ) { result in
-            switch result {
-            case .success(let user):
-                print("✅ Registered:", user)
-                gotToLogin = true
-            case .failure(let error):
-                print("❌ Registration failed:", error.localizedDescription)
+            DispatchQueue.main.async {
+                isLoading = false
+                switch result {
+                case .success:
+                    gotToLogin = true
+                case .failure(let error):
+                    showToastMessage(error.localizedDescription)
+                }
             }
         }
     }
+
     func isValidPassword(_ password: String) -> Bool {
         let pattern = "^(?=.*[0-9])(?=.*[*%^]).+$"
         return NSPredicate(format: "SELF MATCHES %@", pattern).evaluate(with: password)
     }
 }
-
 
 #Preview {
     SignUp()

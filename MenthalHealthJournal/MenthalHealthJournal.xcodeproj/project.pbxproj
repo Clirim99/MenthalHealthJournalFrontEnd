@@ -289,7 +289,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6G9FRA7A53;
+				DEVELOPMENT_TEAM = JT8V6AVST4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MenthalHealthJournal/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
@@ -320,7 +320,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6G9FRA7A53;
+				DEVELOPMENT_TEAM = JT8V6AVST4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MenthalHealthJournal/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";

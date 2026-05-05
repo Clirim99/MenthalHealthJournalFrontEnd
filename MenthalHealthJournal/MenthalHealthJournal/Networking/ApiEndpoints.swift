@@ -9,7 +9,8 @@ import Foundation
 
 class ApiEndpoints {
     
-    static let localHostIP = "http://10.81.81.36:8080/"
-    
-    
+    static let localHostIP = "http://10.81.81.10:8080/"
+    //10.81.81.41
+
+
 }

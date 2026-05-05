@@ -1,58 +1,68 @@
-//
-//  HomePage.swift
-//  MenthalHealthJournal
-//
-//  Created by TokioMac on 28.5.25.
-//
-
 import SwiftUI
 
 struct HomePage: View {
     var body: some View {
-        ZStack{
-            Text("Menthal health journal")
-                .fontWeight(.ultraLight)
-                .font(.system(size: 40))
-            VStack{
+        ZStack {
+            AppTheme.backgroundGradient.ignoresSafeArea()
+
+            VStack(spacing: 0) {
+                Spacer()
+
                 Image("menthalHealthLogo")
                     .resizable()
-                    .frame(width: 120,height: 120)
-                    .padding(.top,180)
+                    .scaledToFit()
+                    .frame(width: 120, height: 120)
+                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                    .padding(.bottom, 24)
+
+                Text("Mental Health\nJournal")
+                    .font(.system(size: 34, weight: .bold))
+                    .foregroundColor(AppTheme.textPrimary)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 8)
+
+                Text("Track your mood, reflect on your day,\nand chat with AI about your feelings.")
+                    .font(.subheadline)
+                    .foregroundColor(AppTheme.textSecondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 40)
+
                 Spacer()
-                NavigationLink(destination: SignUp()) {
-                    Text("Get started")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.gray.opacity(0.3))
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                        .padding(.horizontal)
-                }
-                HStack{
-                    Text("Already user?")
-                        .foregroundColor(.white)
+
+                VStack(spacing: 12) {
+                    NavigationLink(destination: SignUp()) {
+                        Text("Get Started")
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(AppTheme.accent)
+                            .foregroundColor(.white)
+                            .cornerRadius(14)
+                    }
+
                     NavigationLink(destination: Login()) {
-                        Text("Log in")
-                        .buttonStyle(.bordered)
-                        .cornerRadius(10)
-                        .foregroundColor(.blue)
+                        Text("I already have an account")
+                            .fontWeight(.medium)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(AppTheme.inputBg)
+                            .foregroundColor(AppTheme.accent)
+                            .cornerRadius(14)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 14)
+                                    .stroke(AppTheme.border, lineWidth: 1)
+                            )
                     }
                 }
-            }.padding(.bottom,80)
+                .padding(.horizontal, 24)
+                .padding(.bottom, 50)
+            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity) // Expand to fill the screen
-                .background(
-                    LinearGradient(
-                        colors: [.blue, .purple],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-                .ignoresSafeArea() // Optional: extend under the safe area
-
     }
 }
 
 #Preview {
-    HomePage()
+    NavigationStack {
+        HomePage()
+    }
 }

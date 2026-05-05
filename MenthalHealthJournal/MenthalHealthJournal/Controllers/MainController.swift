@@ -1,61 +1,43 @@
 import SwiftUI
 
 struct MainControllerView: View {
-    @State private var showSidebar = false
-    @State private var selectedItem: String? = "Home"
+    @State private var selectedTab = 0
 
     var body: some View {
-        GeometryReader { geometry in
-            HStack(spacing: 0) {
-                if showSidebar {
-                    SidebarView(selectedItem: $selectedItem)
-                        .frame(width: geometry.size.width / 2.5)
-                        .transition(.move(edge: .leading))
-                        .background(DisableBackSwipe())
-
+        TabView(selection: $selectedTab) {
+            FeelingsDscController()
+                .tabItem {
+                    Image(systemName: "square.and.pencil")
+                    Text("Journal")
                 }
-                
-                VStack {
-                    HStack {
-                        Button(action: {
-                            withAnimation {
-                                showSidebar.toggle()
-                            }
-                        }) {
-                            Image(systemName: "sidebar.leading")
-                                .font(.title2)
-                                .foregroundColor(.white) // 👈 Set button color to white
-                        }
-                        .padding()
-                        
-                        Spacer()
-                    }
-                    Divider()
-                    
-                    FeelingsDscController()
+                .tag(0)
 
-                    Spacer()
+            HistoryView()
+                .tabItem {
+                    Image(systemName: "clock.arrow.circlepath")
+                    Text("History")
                 }
-                .frame(width: showSidebar ? geometry.size.width * 2/3 : geometry.size.width)
-                .background(
-                    LinearGradient(
-                        colors: [.blue, .purple],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-             //   .ignoresSafeArea()
-                
-            }
-            .animation(.easeInOut, value: showSidebar)
-            .background(DisableBackSwipe())
+                .tag(1)
+
+            ChatView()
+                .tabItem {
+                    Image(systemName: "bubble.left.and.bubble.right")
+                    Text("Chat")
+                }
+                .tag(2)
+        }
+        .accentColor(AppTheme.accent)
+        .onAppear {
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithOpaqueBackground()
+            tabBarAppearance.backgroundColor = UIColor(AppTheme.surface)
+            UITabBar.appearance().standardAppearance = tabBarAppearance
+            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+            UITabBar.appearance().unselectedItemTintColor = UIColor.white.withAlphaComponent(0.4)
         }
     }
-    
 }
 
-struct MainControllerView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainControllerView()
-    }
+#Preview {
+    MainControllerView()
 }
