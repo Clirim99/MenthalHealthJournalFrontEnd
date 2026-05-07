@@ -38,6 +38,173 @@
             </objects>
             <point key="canvasLocation" x="131" y="-28"/>
         </scene>
+        <!--Forgot Password Send Code-->
+        <scene sceneID="UXV-Ig-a4J">
+            <objects>
+                <viewController storyboardIdentifier="ForgotPasswordSendCode" id="TDg-nd-Dpm" customClass="ForgotPasswordSendCode" customModule="MenthalHealthJournal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N2B-mE-Fib">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07P-kS-eKC">
+                                <rect key="frame" x="96.666666666666686" y="482" width="200" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="5KR-wC-p0v"/>
+                                    <constraint firstAttribute="width" constant="200" id="U2L-9j-6bq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Send a Code"/>
+                                <connections>
+                                    <action selector="SendCodeFunc:" destination="TDg-nd-Dpm" eventType="touchUpInside" id="gIz-37-yew"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rgw-aM-Jzb">
+                                <rect key="frame" x="8" y="402" width="377" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="3a1-wU-VIO"/>
+                                </constraints>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xpy-1k-pta"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rgw-aM-Jzb" firstAttribute="centerY" secondItem="N2B-mE-Fib" secondAttribute="centerY" id="4y8-x0-mwc"/>
+                            <constraint firstItem="xpy-1k-pta" firstAttribute="trailing" secondItem="rgw-aM-Jzb" secondAttribute="trailing" constant="8" id="DcL-ol-fKf"/>
+                            <constraint firstItem="rgw-aM-Jzb" firstAttribute="leading" secondItem="xpy-1k-pta" secondAttribute="leading" constant="8" id="Wqd-Ys-qz2"/>
+                            <constraint firstItem="07P-kS-eKC" firstAttribute="top" secondItem="rgw-aM-Jzb" secondAttribute="bottom" constant="32" id="YEg-F0-9mn"/>
+                            <constraint firstItem="07P-kS-eKC" firstAttribute="centerX" secondItem="N2B-mE-Fib" secondAttribute="centerX" id="ozf-03-TJQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="EmailTextField" destination="rgw-aM-Jzb" id="FP6-E9-87L"/>
+                        <outlet property="SendCodeButton" destination="07P-kS-eKC" id="kdh-AX-OM5"/>
+                        <outlet property="SendCodeView" destination="N2B-mE-Fib" id="HIN-K5-Zes"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fJw-DU-UpC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1082" y="-37"/>
+        </scene>
+        <!--Change Password Controller-->
+        <scene sceneID="BQf-lC-FSs">
+            <objects>
+                <viewController storyboardIdentifier="ChangePasswordController" id="4aR-4g-rio" customClass="ChangePasswordController" customModule="MenthalHealthJournal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0nZ-yU-xEy">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QrS-mj-RbD">
+                                <rect key="frame" x="8" y="338" width="377" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="3Xt-NJ-RMK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ConfirmPassword" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QIT-DD-tU1">
+                                <rect key="frame" x="8" y="402" width="377" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="pki-tS-Swk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9B-Ph-eRn">
+                                <rect key="frame" x="96.666666666666686" y="482" width="200" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Ho2-MI-OCL"/>
+                                    <constraint firstAttribute="height" constant="48" id="KeV-n3-UNY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Change Password">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="ChangePasswordFunc:" destination="4aR-4g-rio" eventType="touchUpInside" id="V34-1j-IEx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zAW-l2-dsf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QrS-mj-RbD" firstAttribute="leading" secondItem="zAW-l2-dsf" secondAttribute="leading" constant="8" id="1fb-q0-pLR"/>
+                            <constraint firstItem="zAW-l2-dsf" firstAttribute="trailing" secondItem="QrS-mj-RbD" secondAttribute="trailing" constant="8" id="8sh-z8-1Nq"/>
+                            <constraint firstItem="x9B-Ph-eRn" firstAttribute="centerX" secondItem="0nZ-yU-xEy" secondAttribute="centerX" id="F5Q-3l-dRq"/>
+                            <constraint firstItem="QIT-DD-tU1" firstAttribute="centerY" secondItem="0nZ-yU-xEy" secondAttribute="centerY" id="LM0-tK-RdX"/>
+                            <constraint firstItem="zAW-l2-dsf" firstAttribute="trailing" secondItem="QIT-DD-tU1" secondAttribute="trailing" constant="8" id="MGg-Gx-qOH"/>
+                            <constraint firstItem="QIT-DD-tU1" firstAttribute="leading" secondItem="zAW-l2-dsf" secondAttribute="leading" constant="8" id="Pkn-ya-XpU"/>
+                            <constraint firstItem="x9B-Ph-eRn" firstAttribute="top" secondItem="QIT-DD-tU1" secondAttribute="bottom" constant="32" id="Xoa-kE-ZG9"/>
+                            <constraint firstItem="QIT-DD-tU1" firstAttribute="top" secondItem="QrS-mj-RbD" secondAttribute="bottom" constant="16" id="dW4-dA-pbS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ChangePasswordView" destination="0nZ-yU-xEy" id="IbI-5T-NCn"/>
+                        <outlet property="ConfirmPassword" destination="QIT-DD-tU1" id="Yad-QU-1sQ"/>
+                        <outlet property="PasswordTextField" destination="QrS-mj-RbD" id="1ys-GN-biO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LPw-ox-033" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2676" y="-37"/>
+        </scene>
+        <!--Confirm Code Controller-->
+        <scene sceneID="Gfi-lt-d6u">
+            <objects>
+                <viewController storyboardIdentifier="ConfirmCodeController" id="2hx-0A-dgc" customClass="ConfirmCodeController" customModule="MenthalHealthJournal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I4v-TN-yhQ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SendCode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JSd-MO-DKU">
+                                <rect key="frame" x="8" y="402" width="377" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="FwH-F0-Gw6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMk-C5-3i6">
+                                <rect key="frame" x="96.666666666666686" y="466" width="200" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="8FQ-PS-hMJ"/>
+                                    <constraint firstAttribute="width" constant="200" id="Aj6-Ss-MHk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Send a Code"/>
+                                <connections>
+                                    <action selector="SendCodeFunc:" destination="2hx-0A-dgc" eventType="touchUpInside" id="w1g-Rb-e9l"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lq4-QA-PS1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LMk-C5-3i6" firstAttribute="centerX" secondItem="I4v-TN-yhQ" secondAttribute="centerX" id="8jH-HY-4Ls"/>
+                            <constraint firstItem="lq4-QA-PS1" firstAttribute="trailing" secondItem="JSd-MO-DKU" secondAttribute="trailing" constant="8" id="IAI-B5-QiX"/>
+                            <constraint firstItem="JSd-MO-DKU" firstAttribute="leading" secondItem="lq4-QA-PS1" secondAttribute="leading" constant="8" id="cj1-dO-hrX"/>
+                            <constraint firstItem="JSd-MO-DKU" firstAttribute="centerY" secondItem="I4v-TN-yhQ" secondAttribute="centerY" id="wkh-xY-adK"/>
+                            <constraint firstItem="LMk-C5-3i6" firstAttribute="top" secondItem="JSd-MO-DKU" secondAttribute="bottom" constant="16" id="zka-qj-Sdn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ConfirmCodeTextField" destination="JSd-MO-DKU" id="ibW-Ld-Xg3"/>
+                        <outlet property="ConfirmCodeView" destination="I4v-TN-yhQ" id="xgd-1E-uoF"/>
+                        <outlet property="SendCode" destination="LMk-C5-3i6" id="9Or-NK-QxI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JuH-xd-Cgf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1923" y="-37"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">

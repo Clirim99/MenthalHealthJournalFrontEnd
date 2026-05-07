@@ -64,6 +64,24 @@ struct Login: View {
                                 .focused($focusedField, equals: .password)
                                 .submitLabel(.done)
                                 .onSubmit { focusedField = nil }
+                            
+                            // MARK: - Forgot Password Button
+                            // MARK: - Forgot Password Button
+                            HStack {
+                                Spacer()
+                                NavigationLink(destination: ZStack {
+                                    // 1. Put the exact same background here
+                                    AppTheme.backgroundGradient.ignoresSafeArea()
+                                    
+                                    // 2. Put your transparent Storyboard view on top
+                                    ForgotPasswordViewWrapper().ignoresSafeArea()
+                                }) {
+                                    Text("Forgot Password?")
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(AppTheme.accent)
+                                }
+                            }
                         }
 
                         Button {
@@ -110,6 +128,7 @@ struct Login: View {
             .showToast(text: toastMessage, isShowing: $showToast)
             .navigationDestination(isPresented: $isLoggedIn) {
                 MainControllerView()
+                .navigationBarBackButtonHidden(true)
             }
         }
         .navigationBarBackButtonHidden(true)
