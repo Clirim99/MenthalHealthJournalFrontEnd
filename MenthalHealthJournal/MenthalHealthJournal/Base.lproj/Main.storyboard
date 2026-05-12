@@ -82,7 +82,7 @@
                     </view>
                     <connections>
                         <outlet property="EmailTextField" destination="rgw-aM-Jzb" id="FP6-E9-87L"/>
-                        <outlet property="SendCodeButton" destination="07P-kS-eKC" id="kdh-AX-OM5"/>
+                        <outlet property="SendCodeButton" destination="07P-kS-eKC" id="vlH-QC-dV4"/>
                         <outlet property="SendCodeView" destination="N2B-mE-Fib" id="HIN-K5-Zes"/>
                     </connections>
                 </viewController>

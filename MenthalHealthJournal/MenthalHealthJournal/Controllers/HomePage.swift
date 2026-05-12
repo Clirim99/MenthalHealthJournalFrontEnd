@@ -11,9 +11,11 @@ struct HomePage: View {
                 Image("menthalHealthLogo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 120, height: 120)
+                    // Size increased for an iPhone screen while maintaining aspect ratio
+                    .frame(width: 320)
                     .clipShape(RoundedRectangle(cornerRadius: 30))
-                    .padding(.bottom, 24)
+                    // Reduced padding since the larger image takes up more space
+                    .padding(.bottom, 32)
 
                 Text("Mental Health\nJournal")
                     .font(.system(size: 34, weight: .bold))

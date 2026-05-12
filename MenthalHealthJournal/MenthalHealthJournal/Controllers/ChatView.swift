@@ -13,6 +13,10 @@ struct ChatView: View {
     var body: some View {
         ZStack {
             AppTheme.backgroundGradient.ignoresSafeArea()
+                .contentShape(Rectangle()) // Makes the entire area (even transparent parts) hittable
+                    .onTapGesture {
+                        isInputFocused = false // Setting this to false dismisses the keyboard
+                    }
 
             VStack(spacing: 0) {
                 chatHeader
@@ -335,8 +339,13 @@ struct SessionsListView: View {
                                         Image(systemName: session.contextType == "single_entry"
                                               ? "doc.text" : "globe")
                                             .foregroundColor(AppTheme.accent)
-                                        Text(session.contextType == "single_entry"
-                                             ? "Entry Chat" : "Global Chat")
+                                        Text({
+                                            if let name = session.sessionName, !name.isEmpty {
+                                                return name
+                                            } else {
+                                                return "Global Chat"
+                                            }
+                                        }())
                                             .font(.headline)
                                             .foregroundColor(AppTheme.textPrimary)
                                     }

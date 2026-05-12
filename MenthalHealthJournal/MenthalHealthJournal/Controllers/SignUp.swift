@@ -48,7 +48,8 @@ struct SignUp: View {
                                 .keyboardType(.emailAddress)
                                 .autocapitalization(.none)
 
-                            SecureField("Password", text: $password)
+                            // Password with White Placeholder
+                            SecureField("", text: $password, prompt: Text("Password").foregroundColor(.white.opacity(0.7)))
                                 .padding(14)
                                 .background(AppTheme.inputBg)
                                 .cornerRadius(12)
@@ -61,7 +62,8 @@ struct SignUp: View {
                                 .submitLabel(.next)
                                 .onSubmit { focusedField = .confirmPassword }
 
-                            SecureField("Confirm password", text: $confirmPassword)
+                            // Confirm Password with White Placeholder
+                            SecureField("", text: $confirmPassword, prompt: Text("Confirm password").foregroundColor(.white.opacity(0.7)))
                                 .padding(14)
                                 .background(AppTheme.inputBg)
                                 .cornerRadius(12)
@@ -113,8 +115,9 @@ struct SignUp: View {
         }
     }
 
+    // Helper updated with prompt to make placeholder white
     private func styledField(_ placeholder: String, text: Binding<String>, field: SignUpField, next: SignUpField) -> some View {
-        TextField(placeholder, text: text)
+        TextField("", text: text, prompt: Text(placeholder).foregroundColor(.white.opacity(0.7)))
             .padding(14)
             .background(AppTheme.inputBg)
             .cornerRadius(12)

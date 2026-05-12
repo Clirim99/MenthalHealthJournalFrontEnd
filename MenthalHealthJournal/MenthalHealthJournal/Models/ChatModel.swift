@@ -5,6 +5,7 @@ struct ChatSession: Codable, Identifiable {
     let userId: String
     let contextType: String
     let entryId: String?
+    let sessionName: String?
     let createdAt: String
     let updatedAt: String
 
@@ -13,6 +14,7 @@ struct ChatSession: Codable, Identifiable {
         case userId = "user_id"
         case contextType = "context_type"
         case entryId = "entry_id"
+        case sessionName = "session_name"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
